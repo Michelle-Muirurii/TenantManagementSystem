@@ -3,6 +3,7 @@ package com.example.tenantmanagementsystem
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tenantmanagementsystem.databinding.ActivityRegisterBinding
 
@@ -12,6 +13,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onCreate")
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
 
@@ -46,6 +48,39 @@ class RegisterActivity : AppCompatActivity() {
         binding.loginLinkTextView.setOnClickListener {
             finish()
         }
+    }
+    // ── LIFECYCLE METHODS ─────────────────────────────────────────
+    // Android calls each of these automatically. We only add a log
+    // line so we can watch the order in Logcat.
+    // The screen is now VISIBLE
+    override fun onStart() {
+        super.onStart()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onStart")
+    }
+    // The screen is in FRONT and the user can interact with it
+    override fun onResume() {
+        super.onResume()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onResume")
+    }
+    // The screen is LEAVING the front (e.g. Home was pressed)
+    override fun onPause() {
+        super.onPause()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onPause")
+    }
+    // The screen is NO LONGER VISIBLE
+    override fun onStop() {
+        super.onStop()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onStop")
+    }
+    // The user came BACK to a stopped screen
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onRestart")
+    }
+    // The screen is being DESTROYED
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("TENANT_LIFECYCLE", "RegisterActivity: onDestroy")
     }
 }
 
